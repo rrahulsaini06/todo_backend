@@ -1,15 +1,3 @@
-// console.log("hello i'm starting a new NodeJS project")
-// const { createServer } = require('http');
-// const hostname = '127.0.0.1';
-// const port = 3000;
-// const server = createServer((req, res) => {
-//   res.statusCode = 200;
-//   res.setHeader('Content-Type', 'text/plain');
-//   res.end('Hello World');
-// });
-// server.listen(port, hostname, () => {
-//   console.log(`Server running at http://${hostname}:${port}/`);
-// });
 
 const express = require('express')
 const app = express()
@@ -18,8 +6,30 @@ app.get('/', function (req, res) {
   res.send('Hello rahul saini')
 })
 
-app.get('/mobile', function (req, res) {
-    res.send('this is my mobile number: 7691080706')
-  })
+app.get('/tasks', function (req, res) {
+    tasks = [{name: "rahul",
+discription: "do something new",
+id :"123"
+},
+{name: "rahul",
+discription: "do something new again",
+id :"1234"
+},
+{name: "rahul2",
+discription: "do something new",
+id :"1235"
+},
+{name: "rahul3",
+discription: "do something new",
+id :"1236"
+},
+{name: "rahul4",
+discription: "do something new",
+id :"1237"
+},
+]
+ res.send( tasks)
+})
 
-app.listen(3000)
+
+ 
