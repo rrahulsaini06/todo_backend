@@ -1,9 +1,9 @@
    
-const users = require("../data/users.json");
-const tasks = require("../data/tasks.json");
+// const users = require("../data/users.json");
+// const tasks = require("../data/tasks.json");
    
-   function getTasksByUserId(userId) {
-    const filteredTasks = tasks.filter((task) => {
+   function getTasksByUserId(userId , taskData) {
+    const filteredTasks = taskData.filter((task) => {
       if (task.userId == userId) {
         return task;
       }
@@ -11,19 +11,19 @@ const tasks = require("../data/tasks.json");
     return filteredTasks;
   }
   
-    function getTaskById(id) {
-    for (i = 0; i < tasks.length; i++) {
-      if (tasks[i].id == id) {
-        return tasks[i];
+    function getTaskById(id ,taskData) {
+    for (i = 0; i < taskData.length; i++) {
+      if (taskData[i].id == id) {
+        return taskData[i];
       }
     }
     return;
   }
 
-    function getUserByUserId(userId) {
-    for (i = 0; i < users.length; i++) {
-      if (users[i].userId == userId) {
-        return users[i];
+    function getUserByUserId(userId, usersData) {
+    for (i = 0; i < usersData.length; i++) {
+      if (usersData[i].userId == userId) {
+        return usersData[i];
       }
     }
     return;

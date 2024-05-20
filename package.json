@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "surve": "nodemon index.js"
+    "serve": "nodemon index.js"
   },
   "keywords": [
     "todo_list"
@@ -16,6 +16,7 @@
   "dependencies": {
     "express": "^4.19.2",
     "http": "^0.0.1-security",
+    "mongodb": "^6.5.0",
     "nodemon": "^3.1.0"
   }
 }
