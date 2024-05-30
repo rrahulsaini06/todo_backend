@@ -29,4 +29,13 @@
     return;
   }
   
-  module.exports = { getTaskById, getTasksByUserId, getUserByUserId }
+  function getUserById(Id, usersData) {
+    for (i = 0; i < usersData.length; i++) {
+      if (usersData[i].Id == Id) {
+        return usersData[i];
+      }
+    }
+    return;
+  }
+  
+  module.exports = { getTaskById, getTasksByUserId, getUserByUserId , getUserById }
