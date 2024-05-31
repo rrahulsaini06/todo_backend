@@ -4,9 +4,10 @@ const app = express();
 // let users = require("./data/users.json");
 const helpers = require("./helpers/helpers");
 const bodyParser = require("body-parser");
-const mongoUtil = require("./mongoUtil");
+// const mongoUtil = require("./mongoUtil");
 const tasksRouter =require("./routes/task");
 const usersRouter =require("./routes/user");
+const mongoose = require("mongoose")
  
 // mongoUtil.connectToServer( function( err, client ) {
 //   if (err) console.log(err);
@@ -101,8 +102,9 @@ app.get("/", function (req, res) {
 
 
 app.listen(3000, async (err, data) => {
+  await mongoose.connect("mongodb://0.0.0.0:27017/todo")
   console.log("server started at port 3000 : http://localhost:3000");
-  db = await mongoUtil.init();
+  // db = await mongoUtil.init();
 });
 
 // tasks/byUser/:userid

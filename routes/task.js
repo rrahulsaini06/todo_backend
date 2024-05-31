@@ -1,11 +1,12 @@
 const express = require("express");
 const router = express.Router();
+const TaskModel=  require("../models/taskModel")
  
 
 router.get("/", async function (req, res) {
   try {
-    let collection = await db.collection("tasks");
-    let tasksData = await collection.find({}).toArray();
+    // let collection = await db.collection("tasks");
+    let tasksData = await TaskModel.find();
     res.statusCode = 200;
     res.send({
       success: true,
@@ -20,9 +21,11 @@ router.get("/", async function (req, res) {
 router.post("/create", async function (req, res) {
   try {
     // throw new Error("this is custom generated error")
-    let newTask = req.body;
-    let collection = db.collection("tasks");
-    let ress = await collection.insertOne(newTask);
+     let newTask = req.body;
+     const task = new TaskModel(newTask);
+    // let collection = db.collection("tasks");
+
+    let ress = await task.save();
     res.statusCode = 200;
     res.send({
       success: true,
@@ -37,9 +40,9 @@ router.post("/create", async function (req, res) {
 
 router.delete("/delete/:taskId", async function (req, res) {
   try {
-    let tasksCollection = await db.collection("tasks");
-    let taskData = await tasksCollection.deleteOne({
-      taskID: req.params.taskId,
+    // let tasksCollection = await db.collection("tasks");
+    let taskData = await TaskModel.deleteOne({
+      taskId: req.params.taskId,
     });
     res.statusCode = 200;
     res.send({
@@ -54,8 +57,8 @@ router.delete("/delete/:taskId", async function (req, res) {
 
 router.get("/:id", async function (req, res) {
   try {
-    let tasksCollection = await db.collection("tasks");
-    let  taskData = await tasksCollection.findOne({taskID : req.params.id}) ;
+    // let tasksCollection = await db.collection("tasks");
+    let  taskData = await TaskModel.findOne({taskId : req.params.id}) ;
     
     res.statusCode = 200;
     res.send({
@@ -71,8 +74,8 @@ router.get("/:id", async function (req, res) {
 router.put("/update/:taskId", async function (req, res) {
   try {
     let taskInfo = req.body;
-    let tasksCollection = await db.collection("tasks");
-    let taskData = await tasksCollection.updateOne(
+    // let tasksCollection = await db.collection("tasks");
+    let taskData = await TaskModel.updateOne(
       { taskID: req.params.taskId },
       { $set: taskInfo }
     );
