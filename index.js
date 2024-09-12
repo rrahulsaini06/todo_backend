@@ -7,7 +7,14 @@ const bodyParser = require("body-parser");
 // const mongoUtil = require("./mongoUtil");
 const tasksRouter =require("./routes/task");
 const usersRouter =require("./routes/user");
-const mongoose = require("mongoose")
+const singUpRouter =require("./routes/singUp");
+const mongoose = require("mongoose");
+const cors = require("cors");
+
+const corsOptions = {
+  origin: "*",
+};
+app.use(cors(corsOptions));
  
 // mongoUtil.connectToServer( function( err, client ) {
 //   if (err) console.log(err);
@@ -21,6 +28,7 @@ app.use(bodyParser.json());
 
 app.use('/tasks' ,tasksRouter);
 app.use('/users' , usersRouter);
+app.use('/singUp' , singUpRouter)
 
 
 
